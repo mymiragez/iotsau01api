@@ -1,0 +1,1 @@
+//API ทำหน้าที่ รับ Request จาก Client เพื่อนำข้อมูลที่ Client ส่งมาไปบันทึกใน database แล้ว Response ส่งกลับไปยัง Client ว่าบันทึกเรียบร้อยแล้ว
