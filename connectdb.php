@@ -23,10 +23,10 @@ class ConnectDB
                 "mysql:host={$this->host};dbname={$this->dbname}",$this->uname,$this->pword //เปลี่ยนตามตัวที่ใช้งาน
 
             );
-            echo "Connection OK";
+           // echo "Connection OK";
 
         } catch (PDOException $ex) {
-            echo "Connection NOT OK";
+           // echo "Connection NOT OK";
 
         }
 

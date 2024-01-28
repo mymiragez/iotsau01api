@@ -23,7 +23,7 @@ if ($result->rowCount() > 0) {
     while ($resultData = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($resultData);
         $resultArray = array(
-            "message" => "1อิอิ",
+            "message" => "1",
             "user_id" => strval($user_id),
             "user_fullname" => $user_fullname,
             "user_name" => $user_name,            
