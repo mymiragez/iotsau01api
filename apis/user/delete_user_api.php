@@ -19,7 +19,7 @@ $data = json_decode(file_get_contents("php://input"));
 //เอาค่าที่เก็บในตัวแปรหลังจากการ decode มากำหนดให้กับตัวแปรที่ใช้กับฟังก์ชั่นที่ model
 $user->user_id = $data->user_id;
 
-//เรียกใช้ฟังก์ชั่น checkLoginUser()
+//เรียกใช้ฟังก์ชั่น deleteUser()
 if ($user->deleteUser()) {
     // delete สำเร็จ
     $resultArray = array(

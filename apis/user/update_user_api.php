@@ -23,7 +23,7 @@ $user->user_name = $data->user_name;
 $user->user_password = $data->user_password;
 $user->user_age = $data->user_age;
 
-//เรียกใช้ฟังก์ชั่น checkLoginUser()
+//เรียกใช้ฟังก์ชั่น updateUser()
 if ($user->updateUser()) {
     // Update สำเร็จ
     $resultArray = array(
