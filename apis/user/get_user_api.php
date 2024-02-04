@@ -16,9 +16,9 @@ $user = new User($connectDB->createConnectionDB()); //สร้าง Connection
 $result = $user->getUser();
 
 
-//echo $result->rowConut
+//ตรวจสอบผลที่ได้จากการ query ข้อมูลว่ามีข้อมูลหรือไม่
 if ($result->rowCount() > 0) {
-    $jsonDataResult=array();
+    $jsonDataResult = array();
     //มีข้อมูล
     while ($resultData = $result->fetch(PDO::FETCH_ASSOC)) {
         extract($resultData);
@@ -26,20 +26,23 @@ if ($result->rowCount() > 0) {
             "message" => "1",
             "user_id" => strval($user_id),
             "user_fullname" => $user_fullname,
-            "user_name" => $user_name,            
-            "user_password" => $user_password,            
+            "user_name" => $user_name,
+            "user_password" => $user_password,
             "user_age" => strval($user_age)
         );
         //ehco $resultArray[0];
-        array_push($jsonDataResult,$resultArray);
+        array_push($jsonDataResult, $resultArray);
     }
     http_response_code(200);
     echo json_encode($jsonDataResult);
 } else {
     //ไม่มีข้อมูล
-    $jsonDataResult = array(
+    $jsonDataResult = array();
+    $resultArray = array(
         "message" => "0"
     );
+    array_push($jsonDataResult, $resultArray);
+
     http_response_code(200);
     echo json_encode($jsonDataResult);
 }

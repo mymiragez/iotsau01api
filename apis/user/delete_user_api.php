@@ -18,21 +18,17 @@ $data = json_decode(file_get_contents("php://input"));
 
 //เอาค่าที่เก็บในตัวแปรหลังจากการ decode มากำหนดให้กับตัวแปรที่ใช้กับฟังก์ชั่นที่ model
 $user->user_id = $data->user_id;
-$user->user_fullname = $data->user_fullname;
-$user->user_name = $data->user_name;
-$user->user_password = $data->user_password;
-$user->user_age = $data->user_age;
 
 //เรียกใช้ฟังก์ชั่น checkLoginUser()
-if ($user->updateUser()) {
-    // Update สำเร็จ
+if ($user->deleteUser()) {
+    // delete สำเร็จ
     $resultArray = array(
         "message" => "1",
     );
     http_response_code(200);
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
 } else {
-        // Update ไม่สำเร็จ
+        // delete ไม่สำเร็จ
     $resultArray = array(
         "message" => "0",
     );

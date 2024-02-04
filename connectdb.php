@@ -20,13 +20,16 @@ class ConnectDB
         try {
             //คำสั่งติดต่อกับ DB
             $this->connDB = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname}",$this->uname,$this->pword //เปลี่ยนตามตัวที่ใช้งาน
+                "mysql:host={$this->host};dbname={$this->dbname}",
+                $this->uname,
+                $this->pword //เปลี่ยนตามตัวที่ใช้งาน
 
             );
-           // echo "Connection OK";
+            $this->connDB->exec("set names utf8");
+            // echo "Connection OK";
 
         } catch (PDOException $ex) {
-           // echo "Connection NOT OK";
+            // echo "Connection NOT OK";
 
         }
 
