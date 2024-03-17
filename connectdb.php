@@ -1,39 +1,36 @@
 <?php
-//ไฟล์กลางทำหน้าที่เป็นไฟล์กลางติดต่อกับ Database
-class ConnectDB
-{
-    //สร้างตัวแปรที่จะใช้ในการติดต่อกับ DB
-    private $host = "localhost"; // Server Name (Host Name, Domain) ที่เก็บ DB ไว้
-    private $uname = "root"; // username login DB
-    private $pword = ""; //password login DB
-    private $dbname = "iotsau_01_db"; //Database Name
+//ไฟล์กลางที่ทำงานเพื่อใช้ในการติดต่อกับ Database
+class ConnectDB{
+    //ตัวแปรที่จะใช้ในการติดต่อกับ DB
+    private $host = "localhost"; //ชื่อ Server/Host/Damain ที่เก็บ DB 
+    private $uname = "root";  //Username ที่เข้าใช้งาน DB
+    private $pword = "";      //Password ที่เข้าใช้งาน DB
+    private $dbname = "iotsau_01_db";   //ชื่อ DB
 
+    // private $uname = "u231198616_iotgroupa";  //Username ที่เข้าใช้งาน DB
+    // private $pword = "S@u028074500";      //Password ที่เข้าใช้งาน DB
+    // private $dbname = "u231198616_iotgroupa_db";   //ชื่อ DB
 
     //ตัวแปรที่ใช้สำหรับติดต่อกับฐานข้อมูล
     public $connDB;
 
-    //ฟังก์ชั่นที่ใช้สำหรับติดต่อไปยัง DB
-    public function createConnectionDB()
-    {
+    //ฟังก์ชันที่ใช้สำหรับติดต่อไปยัง DB
+    public function createConnectionDB(){        
         $this->connDB = null;
 
-        try {
-            //คำสั่งติดต่อกับ DB
+        try{
+            //คำสั่งติดต่อ DB
             $this->connDB = new PDO(
-                "mysql:host={$this->host};dbname={$this->dbname}",
-                $this->uname,
-                $this->pword //เปลี่ยนตามตัวที่ใช้งาน
-
+                "mysql:host={$this->host};dbname={$this->dbname}",$this->uname, $this->pword
             );
+            
             $this->connDB->exec("set names utf8");
-            // echo "Connection OK";
-
-        } catch (PDOException $ex) {
-            // echo "Connection NOT OK";
-
+            //echo "Connection OK";
+        }catch(PDOException $ex){
+            //echo "Connection NOT OK";
         }
 
-        //ส่งผลการติดต่อ DB ไปยังจุดที่เรียกใช้
+        //ส่งผลการติดต่อไปยัง DB กลับไปยังจุดที่เรียกใช้ฟังก์ชัน
         return $this->connDB;
     }
 }

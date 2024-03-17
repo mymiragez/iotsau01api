@@ -1,41 +1,41 @@
-<?php
-//API ทำหน้าที่ รับ Request จาก Client เพื่อนำข้อมูลที่ Client ส่งมาไปบันทึกใน database แล้ว Response ส่งกลับไปยัง Client ว่าบันทึกเรียบร้อยแล้ว
-//API ทำหน้าที่ รับ Request จาก Client เพื่อไป query(ดึง) ข้อมูลจาก database แล้ว Response ส่งกลับไปยัง Client
+<?php 
+//API ที่ทำหน้าที่รับ request จาก client เพื่อไปนำข้อมูลที่ client ส่งมาแก้ไขไปบันทึกใน DB แล้ว response กลับไปยัง client ว่าแก้ไขบันทึกเรียบร้อยแล้ว
+
 //กำหนดการเรียกใช้ข้าม Domain
 header("Access-Control-Allow-Origin: *");
 //กำหนดเนื้อหาข้อมูลที่ใช้ในการรับส่งเป็น JSON และเข้ารหัสอักขระเป็น UTF-8
 header("Content-Type: application/json; charset=UTF-8");
 
 //เรียกใช้งานไฟล์ connectdb.php, user.php
-require_once "./../../connectdb.php"; //getuser อยู่ใน user ./ ออกจาก getuser ../ออกจากโฟร์เดอร์ user ../ ออกจาก apis ถึงจะเจอ connectdb.php
+require_once "./../../connectdb.php";
 require_once "./../../models/user.php";
 
 $connectDB = new ConnectDB();
 $user = new User($connectDB->createConnectionDB()); //สร้าง Connection DB
 
-//ตัวแปรเก็บค่าที่ส่งมาจากฝั่ง Client เอาข้อมูลที่ส่งมาเป็น json มา ถอดรหัส decode เพื่อใช้งาน
+//ตัวแปรเก็บค่าที่ส่งมาจากฝั่ง Client ซึ่งเป็น JSON มาทำการ decode เพื่อเอามาใช้งาน
 $data = json_decode(file_get_contents("php://input"));
 
-//เอาค่าที่เก็บในตัวแปรหลังจากการ decode มากำหนดให้กับตัวแปรที่ใช้กับฟังก์ชั่นที่ model
-$user->user_id = $data->user_id;
-$user->user_fullname = $data->user_fullname;
-$user->user_name = $data->user_name;
-$user->user_password = $data->user_password;
-$user->user_age = $data->user_age;
+//เอาค่าที่เก็บในตัวแปรหลังจากการ decode มากำหนดให้กับตัวแปรที่จะใช้กับฟังก์ชันที่ model
+$user->userId = $data->userId;
+$user->userFullname = $data->userFullname;
+$user->userName = $data->userName;
+$user->userPassword = $data->userPassword;
+$user->userAge = $data->userAge;
 
-//เรียกใช้ฟังก์ชั่น updateUser()
-if ($user->updateUser()) {
-    // Update สำเร็จ
+//เรียกใช้ฟังก์ชัน update แล้วตรวจสอบผล
+if( $user->updateUser()){
+    //update สำเร็จ
     $resultArray = array(
-        "message" => "1",
+        "message"=>"1"
     );
     http_response_code(200);
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
-} else {
-        // Update ไม่สำเร็จ
+}else{
+    //update ไม่สำเร็จ
     $resultArray = array(
-        "message" => "0",
+        "message"=>"0"
     );
     http_response_code(200);
     echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
-};
+}
