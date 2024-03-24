@@ -35,4 +35,52 @@ class Roomtemp
         //ส่งค่ากลับผลลัพธ์จากการใช้งานคำสั่ง SQL
         return $stmt;
     }
+    
+    /// ฟังชั่นดึงข้อมูล getAllTemp1
+    public function getAllTemp1()
+    {
+        //สร้างคำสั่ง SQL
+        $strSQL = "SELECT roomtempId,temp1,datesave,timesave FROM roomtemp_tb";
+
+        //สร้าง Statement เพื่อใช้งานคำสั่ง SQL
+        $stmt = $this->connectDB->prepare($strSQL);
+
+        //สั่ง SQL ทำงานผ่าน Statement
+        $stmt->execute();
+
+        //ส่งค่ากลับผลลัพธ์จากการใช้งานคำสั่ง SQL
+        return $stmt;
+    }
+    
+    /// ฟังชั่นดึงข้อมูล getAllTemp2
+        public function getAllTemp2()
+    {
+         //สร้างคำสั่ง SQL
+        $strSQL = "SELECT roomtempId,temp2,datesave,timesave FROM roomtemp_tb";
+    
+        //สร้าง Statement เพื่อใช้งานคำสั่ง SQL
+        $stmt = $this->connectDB->prepare($strSQL);
+    
+        //สั่ง SQL ทำงานผ่าน Statement
+        $stmt->execute();
+    
+        //ส่งค่ากลับผลลัพธ์จากการใช้งานคำสั่ง SQL
+        return $stmt;
+    }
+
+        /// ฟังชั่นดึงข้อมูล getAllTemp3
+        public function getAllTemp3()
+    {
+        //สร้างคำสั่ง SQL
+        $strSQL = "SELECT roomtempId,temp3,datesave,timesave FROM roomtemp_tb";
+            
+        //สร้าง Statement เพื่อใช้งานคำสั่ง SQL
+        $stmt = $this->connectDB->prepare($strSQL);
+    
+        //สั่ง SQL ทำงานผ่าน Statement
+        $stmt->execute();
+            
+        //ส่งค่ากลับผลลัพธ์จากการใช้งานคำสั่ง SQL
+        return $stmt;
+    }
 }
